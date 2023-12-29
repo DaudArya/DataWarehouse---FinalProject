@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<Schema name="whawFactPurchase">
+<!--Product, address, time, sales person, orderQty, unit price, line total-->
+<Cube name="Vendor" defaultMeasure="Line Total">
+    <table name="factproductvendor"/>
+   <Dimension name="Product" foreignKey ="ProductID">
+        <Hierarchy hasAll="true" allMemberName="All Product" primaryKey ="ProductID">
+            <Table name="product"/>   
+            <Level name="Product Category" column="ProductCategory" />
+            <Level name="Product Name" column="ProductName" />
+        </Hierarchy>
+    </Dimension>
+
+     <Dimension name="Time" foreignKey="timeID">
+        <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="TimeID">
+            <Table name="time"/>
+            <Level name="Year" column="Year" type="Numeric" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="Month" uniqueMembers="false" type="String" levelType="TimeMonths"/>
+            <!-- <Level name="Date" column="FullDate" uniqueMembers="false" type="Numeric" levelType="TimeDays"/> -->
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Vendor" foreignKey="VendorID">
+        <Hierarchy hasAll="True" allMemberName="All Vendor" primaryKey="VendorID">
+        <Table name="vendor"/>
+            <level name="Name Vendor" column="Name"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Measure name="Order Quantity" column="orderQty" aggregator="sum" formatString="Standard"/>
+    <Measure name="Line Total" column="lineTotal" aggregator="sum" formatString="Standard"/>
+
+</Cube>
+</Schema>

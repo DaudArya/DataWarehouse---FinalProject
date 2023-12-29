@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Schema name="whaw">
+<Cube name="Inventory" defaultMeasure="totalQty">
+<Table name="factproductinventory"/>
+
+    <Dimension name="Product" foreignKey ="ProductID">
+        <Hierarchy hasAll="true" allMemberName="All Product" primaryKey ="ProductID">
+            <Table name="product"/>   
+            <Level name="Product Category" column="ProductCategory" />
+            <Level name="Product Name" column="ProductName" />
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Location" foreignKey ="LocationID">
+        <Hierarchy hasAll="true" allMemberName="All Location" primaryKey ="LocationID">
+            <Table name="location"/>   
+            <Level name="Location Inventory" column="name"/>
+        </Hierarchy>
+
+    </Dimension>
+      <Dimension name="Time" foreignKey="TimeID">
+        <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="TimeID">
+            <Table name="time"/>
+            <Level name="Year" column="Year" type="Numeric" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="Month" uniqueMembers="false" type="String" levelType="TimeMonths"/>
+            <!-- <Level name="Date" column="FullDate" uniqueMembers="false" type="Numeric" levelType="TimeDays"/> -->
+        </Hierarchy>
+    </Dimension>
+
+    <Measure name="Total Quantity" column="Quantity" aggregator="sum"
+    formatString="Standard"/>
+</Cube>
+</Schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Schema name="whawFactSales">
+<!--Product, address, time, sales person, orderQty, unit price, line total-->
+<Cube name="Sales" defaultMeasure="Line Total">
+    <table name="FactSales"/>
+   <Dimension name="Product" foreignKey ="productID">
+        <Hierarchy hasAll="true" allMemberName="All Product" primaryKey ="productID">
+            <Table name="dimproduct"/>   
+            <Level name="Product Name" column="name_produk"/>
+        </Hierarchy>
+    </Dimension>
+     <Dimension name="Time" foreignKey="timeID">
+        <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="timeID">
+            <Table name="dimtime"/>
+            <Level name="Year" column="year" type="Numeric" uniqueMembers="true" levelType="TimeYears"/>
+            <Level name="Month" column="month" uniqueMembers="false" type="Numeric" levelType="TimeMonths"/>
+            <Level name="Date" column="date" uniqueMembers="false" type="Numeric" levelType="TimeDays"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Address Location" foreignKey="TerritoryID">
+        <Hierarchy hasAll="true" allMemberName="All Address Location" primaryKey ='TerritoryID'>
+            <Table name="dimaddress"/>
+            <level name="Territory ID" column="TerritoryID"/>
+            <level name="Country Name" column="country"/> 
+        </Hierarchy>
+    </Dimension>
+
+    <Dimension name="Customer" foreignKey="CustomerID">
+        <Hierarchy hasAll="True" allMemberName="All Customer" primaryKey="CustomerID">
+            <Table name="dimcustomer"/>
+            <level name="Customer ID" column="CustomerID"/>
+            <level name="Account Number" column="AccountNumber"/>
+        </Hierarchy>
+    </Dimension>
+
+    <Measure name="Order Quantity" column="orderQty" aggregator="sum" formatString="Standard"/>
+    <Measure name="Unit Price" column="unitPrice" aggregator="avg" formatString="Standard"/>
+    <Measure name="Line Total" column="lineTotal" aggregator="sum" formatString="Standard"/>
+
+</Cube>
+</Schema>
