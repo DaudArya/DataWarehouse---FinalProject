@@ -2,7 +2,9 @@ TUGAS PROJECT DWO OLAP
 ANGGOTA KELOMPOK :
 
 20082010003 - Mochammad Raihan Rizqullah
+
 20082010137 - Daud Arya Rafa
+
 20082010141 - Muhammad Afkar Naqy
 
 
