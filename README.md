@@ -1,15 +1,10 @@
 TUGAS PROJECT DWO OLAP
 ANGGOTA KELOMPOK :
 
-20082010083			Wisnu Aryo .S
+20082010003 - Mochammad Raihan Rizqullah
+20082010137 - Daud Arya Rafa
+20082010141 - Muhammad Afkar Naqy
 
-20082010106			Putri Dian Shafira
-
-20082010148			Achmad Yusuf Al Maruf
-
-21082010053			Nabila Athifah Zahra
-
-21082010084			Nur Racana Kuslaila
 
 Cara Installasi :
 1. Download dan install XAMPP untuk menjalankan Apache, MySQL, dan Tomcat
